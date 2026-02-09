@@ -1796,3 +1796,219 @@ books = books1 + books2
 >>> books1
 ['Attitude', 'Leadership', 'Management', 'Python', 'Power BI', 'Excel']
 >>> 
+
+
+
+
+WORKING WITH TUPLES
+********************
+- Tuple is a sequence of items like a list object.
+- Unlike list, tuple is immutable, you cannot:
+	- change items
+	- add items
+	- delete items
+	- reverse the items
+	- sort the items
+- Syntax for tuple:
+
+(item1, item2, item3, ... )
+my_tuple = (item1, item2, item3, ... )
+
+
+
+
+>>> products = ("saving", "fd", "rd", "insurance", "bonds")
+>>> # append doesn't work
+>>> products.append("vehicle insurance")
+Traceback (most recent call last):
+  File "<pyshell#3>", line 1, in <module>
+    products.append("vehicle insurance")
+AttributeError: 'tuple' object has no attribute 'append'
+>>> # pop doesn't work
+>>> products.pop()
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+    products.pop()
+AttributeError: 'tuple' object has no attribute 'pop'
+>>> # assignment to an item doesn't work
+>>> products[0] = "savings"
+Traceback (most recent call last):
+  File "<pyshell#7>", line 1, in <module>
+    products[0] = "savings"
+TypeError: 'tuple' object does not support item assignment
+>>> 
+>>> 
+
+
+Accessing item of a tuple
+==========================
+- Use the index number to access the items of a tuple.
+- Index 0 is first item, index 1 is second item, index 2 is third item, so on and so forth.
+- Index -1 is last item, index -2 is second last item, index -3 is third last item, so on and so forth.
+
+
+
+
+products
+('saving', 'fd', 'rd', 'insurance', 'bonds')
+products[0]
+'saving'
+products[1]
+'fd'
+products[3]
+'insurance'
+>>> products[-1]
+'bonds'
+>>> products[-2]         
+'insurance'
+>>>
+
+
+>>> 
+>>> # count(item) to count the specified
+>>> products.count("insurance")
+1
+>>> 
+>>> # my_tuple[start:end:step] - slicing
+>>> products[1:]
+('fd', 'rd', 'insurance', 'bonds')
+>>>
+
+
+
+Unpacking items in a list/tuple
+*******************************
+If a list/tuple contains 10 items, then you can assign them to 10 variable using one single statement.
+
+
+
+>>> products = ("laptop", "printer", "scanner", "webcam")
+
+>>>> p1, p2, p3, p4 = products
+>>> p1
+'laptop'
+>>> p2
+'printer'
+>>> p3
+'scanner'
+>>> p4
+'webcam'
+>>> 
+>>> 
+>>> weekdays = ["mon", "tue", "wed", "thu", "fri"]
+>>> w1, w2, w3, w4, w5 = weekdays
+>>> w1
+'mon'
+>>> w2
+'tue'
+>>> w3
+'wed'
+>>> 
+>>> 
+
+
+The list() function
+===================
+- Creates a new list object based on the given object.
+
+>>> 
+>>> products = ("laptop", "printer", "scanner", "webcam")
+>>> products_list = list(products)
+>>> products_list
+['laptop', 'printer', 'scanner', 'webcam']
+>>> 
+>>> 
+
+The tuple() function
+====================
+- Creates a new tuple object based on the given object.
+
+>>> 
+>>> weekdays = ["mon", "tue", "wed", "thu", "fri"]
+>>> weekdays_tuple = tuple(weekdays)
+>>> weekdays_tuple
+('mon', 'tue', 'wed', 'thu', 'fri')
+>>> 
+
+
+WORKING WITH FILES
+********************
+In Python, there are two types of files:
+	- text files
+	- binary files
+
+Text files
+-----------
+- A text file is a sequence of lines, each line contains characters, at the end of each line there is new line (\n) character.
+- .txt, .csv, .html, .xml, .json
+
+
+Binary files
+------------
+- A binary file is a sequence of bytes. And it may contain text parts.
+- image, voice, video, compressed, compiled, etc.
+
+
+Text files
+***********
+File operations
+=================
+1. Open the file
+	- Use the built-in function: open()
+2. Read from the file or write to the file
+	- To read there are read methods
+	- To write we have write() method
+3. Close the file
+	- Use the close() method
+
+Note: Always close the file which opened.
+
+
+.	current folder
+..	parent folder
+
+project/
+	files/
+		hello.txt
+		docs/
+	access_file.py
+	test_scenarios.txt
+
+
+
+access_file.py
+	. (current folder)	project/
+	./files			project/files
+	./files/hello.txt	project/files/hello.txt
+	../			parent folder of project
+	test_scenarios.txt	Right
+	./test_scenarios.txt	Appropriate (practical)
+
+The open() function
+********************
+Syntax
+-----------
+open(file, mode)
+	- This function opens the specified file in the specified mode.
+	- file: file_name (may include path)
+	- mode: specifies how we can work the file
+
+File modes
+-------------
+1. r (read) mode
+	- We can read the file if it exists. If the file does not exist, then it throws FileNotFoundError.
+
+2. w (write) mode
+	- If the file doesn't exist it creates a new file
+	- If the file already exists then it erases all the data from the file
+	- Then we can write new data
+
+3. a (append) mode
+	- If the file doesn't exist then it creates a new file
+	- If the file already exists then we can append the new data to the end of the file.
+
+4. b (binary) mode
+	- Use binary mode (b) with read (rb) and write (wb) mode
+
+
+
