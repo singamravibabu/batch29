@@ -1,0 +1,6 @@
+print("{:14} {:>7} {:>13}".format("Product", "Units", "Price"))
+print("{:14} {:>7} {:>13}".format("-------", "-------", "-------"))
+print("{:14} {:7d} {:13,.2f}".format("Laptop", 8, 48000))
+print("{:14} {:7d} {:13,.2f}".format("Printer", 12, 8500))
+print("{:14} {:7d} {:13,.2f}".format("Webcam", 80, 999))
+print("{:14} {:7d} {:13,.2f}".format("Scanner", 3, 10995))

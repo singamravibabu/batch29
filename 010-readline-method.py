@@ -1,0 +1,6 @@
+file = open("./data/cities.txt", "r")
+line1 = file.readline()
+line2 = file.readline()
+line3 = file.readline()
+print(line1, line2, line3, sep="")
+file.close()

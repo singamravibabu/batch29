@@ -1989,12 +1989,14 @@ The open() function
 Syntax
 -----------
 open(file, mode)
-	- This function opens the specified file in the specified mode.
+	- This function opens the specified file in the specified mode and returns a file object.
+	- We use the file object to read and write data.
 	- file: file_name (may include path)
 	- mode: specifies how we can work the file
 
-File modes
--------------
+
+File modes of open() function
+------------------------------
 1. r (read) mode
 	- We can read the file if it exists. If the file does not exist, then it throws FileNotFoundError.
 
@@ -2010,5 +2012,416 @@ File modes
 4. b (binary) mode
 	- Use binary mode (b) with read (rb) and write (wb) mode
 
+
+
+Reading a file using 'for' loop
+================================
+- A file is a sequence of lines, so we can loop through each line in a file.
+
+file1 = "courses.txt"
+for line in file1:
+	print(line)
+
+
+There are three read methods
+=============================
+1. read()
+	This method reads entire file as one single string.
+2. readlines()
+	This method reads entire file into a list, where each item is a line from the list.
+3. readline()
+	This method reads the next line.
+
+
+
+The 'with' to automatically close a file
+=========================================
+The 'with' statement creates a content, and the content ends when the block ends.
+
+with ...:
+	block
+
+The 'with' is used to close the file automatically as the file opened with the 'with' statement closes when the block ends.
+
+
+
+years = [2021, 2022, 2023, 2024, 2025]
+
+years.txt
+----------
+2021
+2022
+2023
+2024
+2025
+
+years = [2021, 2022, 2023, 2024, 2025]
+
+
+Three other types
+===================
+binary 	-> use 'pickle' module
+csv	-> use 'csv' module
+	-> pandas contains read_csv() method
+json	-> use 'json' module
+	-> pandas contains read_json() method
+
+
+
+
+
+WORKING WITH NUMBERS
+**********************
+Floating numbers are approximate numbers.
+So we need to use Decimal numbers.
+From the 'decimal' module import 'Decimal' construct to construct decimal numbers.
+
+
+Rule
+-------
+Decimal + int	  -> legal
+int + float	  -> legal
+Decimal + float	  -> illegal
+
+
+total = 100
+discount = 10
+after_discount = 90
+tax = 18% (16.2)
+
+invoice_total = after_discount + tax
+
+
+Formatting numbers
+**********************
+format()	-> formats a number and converts it to a string
+format-specification	-> to specify how to format a number (data_item)
+
+Syntax
+--------
+"...{:format-specification}...".format(data_item)
+
+"...{:format-specification}...{:format-specification}...".format(data_item1, data_item2)
+
+
+Rule
+-------
+numbers are aligned right
+text is aligned left
+
+Format-specification
+--------------------
+[alignment-char][width][comma][.deci_places][type_code]
+
+
+alignment-char:
+	> right-alignment
+	< left-alignment
+	^ center-alignment
+
+type_code:
+	d - integer
+	f - float
+	% - percentage
+	e - exponent
+
+
+Product		 Units		    Price
+-------		-------		  -------
+Laptop		     8		48,000.00
+Printer		    12		 8,500.00
+Webcam              80		   999.00
+Scanner              3		10,995.00
+
+
+print("{:14} {:>7} {:>13}".format("Product", "Units", "Price"))
+print("{:14} {:>7} {:>13}".format("-------", "-------", "-------"))
+print("{:14} {:7d} {:13,.2f}".format("Laptop", 8, 48000))
+print("{:14} {:7d} {:13,.2f}".format("Printer", 12, 8500))
+print("{:14} {:7d} {:13,.2f}".format("Webcam", 80, 999))
+print("{:14} {:7d} {:13,.2f}".format("Scanner", 3, 10995))
+
+
+WORKING WITH STRINGS
+*********************
+- A sequence of characters
+
+- To get Unicode number of a specified character use: ord(char)
+- To get character using specified Unicode numbers: chr(num)
+
+
+chr(3077)
+'అ'
+chr(3078)
+'ఆ'
+>>> chr(3079)
+'ఇ'
+>>> 
+>>> chr(177)
+'±'
+>>> chr(169)
+'©'
+>>> 
+>>> ord("A")
+65
+>>> ord("a")
+97
+>>> ord("-")
+45
+>>> 
+
+
+1. len(string)
+	- counts the number of characters in a string and returns the count number.
+
+>>> len("Hello, world!")
+13
+
+
+Getting a character from a string
+----------------------------------
+- Using index number to a get a specific character from a string, these index numbers are similar to list's index numbers.
+
+
+
+>>> str1 = "Congratulations!"
+>>> str1[0]
+'C'
+>>> str1[1]
+'o'
+>>> str1[2]
+'n'
+>>> 
+>>> str1[-1]
+'!'
+>>> str1[-2]
+'s'
+>>> str1[-3]
+'n'
+>>> 
+
+
+Slicing a string
+================
+my_string[start:end:step]
+
+>>> 
+>>> msg = "How I wish I could calculate"
+>>> msg[0:3]
+'How'
+>>> msg[4:5]
+'I'
+>>> msg[6:10]
+'wish'
+>>> msg[::2]
+'HwIws  ol aclt'
+>>> msg[1::2]
+'o  ihIcudcluae'
+>>> msg[::-1]
+'etaluclac dluoc I hsiw I woH'
+>>> 
+
+
+Triple quotes for multiline string
+==================================
+- This is generally used to store SQL queries and sometimes commands in the form text inside a program (code).
+
+
+SQL_query_1 = """SELECT *
+FROM products"""
+
+
+'in' keyword to check a substring inside a larger string
+=========================================================
+substring in string
+	- If the substring in string then it returns True; otherwise False
+
+>>> 
+>>> msg = "Congratulation! You won one million dollars!!"
+>>> "on" in msg
+True
+>>> "mill" in msg
+True
+>>> "ion" in msg
+True
+>>> "now" in msg
+False
+>>> "billion" in msg
+False
+>>> 
+
+
+if substring in string:
+	block
+
+
+>>> 
+>>> if "million" in msg:
+...     print("You have won a million dollars!")
+... else:
+...     print("You have won a billion dollars!")
+... 
+...     
+
+
+Looping over characters in a string
+------------------------------------
+
+for char in string:
+	block
+
+>>> 
+>>> for c in "hello":
+...     print(c)
+... 
+...     
+
+
+String Methods
+================
+1. isalpha()
+	Returns True if all the characters are letters; otherwise False.
+
+
+>>> 
+>>> "hello".isalpha()
+True
+>>> "HELLO".isalpha()
+True
+>>> "Hello".isalpha()
+True
+>>> "hello1".isalpha()
+False
+>>> "hello ".isalpha()
+False
+>>>
+
+
+2. islower()
+	Returns True if all the letters are in lower-case; otherwise False.
+
+
+>>> 
+>>> "hello123".islower()
+True
+>>> "hello-;1_".islower()
+True
+>>> "helloA".islower()
+False
+>>> 
+
+
+3. isupper()
+	Returns True if all the letters are in uppercase; otherwise False.
+
+
+>>> 
+>>> "hello".isupper()
+False
+>>> "HELLO".isupper()
+True
+>>> "HELLO123".isupper()
+True
+>>> "HELLO-34-34".isupper()
+True
+>>> "HELLO-w".isupper()
+False
+>>> 
+
+
+4. isdigit()
+	Returns True only when all the characters are numbers; otherwise False.
+
+
+>>> 
+>>> "1234".isdigit()
+True
+>>> "1234 ".isdigit()
+False
+>>> "234-123".isdigit()
+False
+>>> 
+>>> "12345678".isalpha()
+False
+>>> "12345678".isupper()
+False
+>>> "12345678".islower()
+False
+>>>
+
+
+5. startswith(substr)
+	- If the string starts with the specified substr then it returns True; otherwise False.
+
+
+>>> 
+>>> quote = "Where there is a will there is a way"
+>>> quote.startswith("W")
+True
+>>> quote.startswith("Where")
+True
+>>> quote.startswith("Whe")
+True
+>>> quote.startswith("Where t")
+True
+>>> quote.startswith("w")
+False
+>>> quote.startswith("there")
+False
+>>> 
+
+6. endswith(substr)
+	- If the string ends with the specified substr then it returns True; otherwise False.
+
+
+>>> 
+>>> quote
+'Where there is a will there is a way'
+>>> quote.endswith("y")
+True
+>>> quote.endswith("ay")
+True
+>>> quote.endswith("way")
+True
+>>> quote.endswith("a way")
+True
+>>> quote.endswith("the way")
+False
+>>> quote.endswith("z")
+False
+
+
+7. lower()
+	- Returns the string where all the letters are converted to lower case.
+
+
+>>> 
+>>> msg = "Message Is: 1234"
+>>> msg.lower()
+'message is: 1234'
+>>> 
+
+
+8. upper()
+	- Returns a string where are the lettes are converted to upper case.
+
+
+>>> 
+>>> msg
+'Message Is: 1234'
+>>> msg.upper()
+'MESSAGE IS: 1234'
+>>>
+
+
+9. title()
+	- Returns a string converted to title case.
+
+
+>>> 
+>>> msg = "the meaning of life"
+>>> msg.title()
+'The Meaning Of Life'
+>>> 
 
 
