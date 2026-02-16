@@ -2425,3 +2425,186 @@ False
 >>> 
 
 
+10. capitalize()
+	-Returns a string in sentence case.
+
+
+
+>>> msg = "the meaning of life"
+>>> msg.capitalize()
+'The meaning of life'
+
+
+
+11. lstrip()
+	- Removes the whitespace on the left-side of the string and then returns the string.
+
+>>> 
+>>> criketer = "       Sachin Tendulkar          "
+>>> 
+>>> criketer.lstrip()
+'Sachin Tendulkar          '
+
+
+12. rstrip()
+	- Removes the whitespaces on the right-side of a string and then returns that string.
+
+>>> 
+>>> cricketer = "       Sachin Tendulkar          "
+>>> 
+>>> cricketer.rstrip()
+'       Sachin Tendulkar'
+
+
+13. strip()
+	- Removes whitespaces from a string from both sides, and returns the new string.
+
+
+>>> 
+>>> cricketer = "       Sachin Tendulkar          "
+>>> 
+>>> cricketer.strip()
+'Sachin Tendulkar'
+>>> 
+
+
+14. ljust(width)
+	Left justifies the string within the specified width.
+
+>>> 
+>>> value = "18,000.00"
+>>> 
+>>> value.ljust(20)
+'18,000.00           '
+>>> 
+
+
+15. rjust(width)
+	Right justified the string within the specified width.
+
+
+>>> 
+>>> value = "18,000.00"
+>>> 
+>>> value.rjust(15)
+'      18,000.00'
+>>> 
+
+
+16. center(width)
+	Center justified the string within the given width.
+
+
+>>> 
+>>> value = "18,000.00"
+>>> 
+>>> value.center(30)
+'          18,000.00           '
+>>> 
+
+
+
+Creating a complex password
+---------------------------
+- one upper case letter
+- one lower case letter
+- one numeric character
+- one special character
+- minimum 6 characters, if not specified it takes 12 characters
+
+import random
+
+lowercase = "abcdefghijklmnopqrstuvwxyz"
+uppercase = lowercase.upper()
+deci_chars = "0123456789"
+special_chars = "!@#$%^&*()-_=+[]{}|;':,./<>?"
+
+all_chars = lowercase + uppercase + deci_chars + special_chars
+
+def generate_password(length=12):
+
+	if length < 6:
+		return "Password must contain at least 6 characters"
+
+	password = random.choice(lowercase)
+	password += random.choice(uppercase)
+	password += random.choice(deci_chars)
+	password += random.choice(special_chars)
+
+	for _ in range(length - 4):
+		password += random.choice(all_chars)
+
+	password_list = list(password)
+	random.shuffle(password_list)
+
+	password = "".join(password_list)
+	return password
+
+
+
+
+The find() method
+==================
+find(substr[, start][, end])
+	This method find the starting index number of the specified substr within larger string.
+	The 'start' is the index number of a string from where you want to start searching for substr, till the index number specified by 'end' argument.
+	If the substr is not part of the larger then the method returns -1.
+
+
+
+email = "manoj.kumar@gmail.com"
+
+at_index = email.find("@")
+at_index
+11
+
+>>> dot_index = email.find(".")
+>>> dot_index
+5
+>>> 
+>>> dot_index = email.find(".", at_index+1)
+>>> dot_index
+17
+>>> 
+>>> email.find("z")
+-1
+>>> 
+>>> if at_index > -1 and at_index < dot_index:
+...     print("Valid email", email)
+... 
+...     
+Valid email manoj.kumar@gmail.com
+>>> 
+
+
+The rfind() method
+===================
+- Same syntax and functionality as the find() method.
+- However, it with search for substring from last character of the string.
+
+
+>>> 
+>>> email = "manoj.kumar@gmail.com"
+>>> 
+>>> at_index = email.find("@")
+>>> dot_index = email.rfind(".")
+>>> 
+>>> at_index
+11
+>>> dot_index
+17
+>>> 
+>>> if at_index > -1 and at_index < dot_index:
+...     print("Valid email address:", email)
+... 
+...     
+Valid email address: manoj.kumar@gmail.com
+>>> 
+
+
+The replace() method
+======================
+replace(old_substr, new_substr [, num])
+
+	The replace method replaces the old_substr with new_substr within the larger string.
+
