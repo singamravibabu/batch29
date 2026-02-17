@@ -2606,5 +2606,305 @@ The replace() method
 ======================
 replace(old_substr, new_substr [, num])
 
-	The replace method replaces the old_substr with new_substr within the larger string.
+	The replace method replaces the old_substr instances with new_substr instances within the larger string.
+	The optional [num] parameter specifies the number of occurances to replace.
+
+
+adr = "1838-3344-3480-5871"
+adr.replace("-", " ")
+'1838 3344 3480 5871'
+adr.replace("-", "")
+'1838334434805871'
+adr.replace("-", "...")
+'1838...3344...3480...5871'
+>>> 
+>>> adr.replace("-", 2)
+Traceback (most recent call last):
+  File "<pyshell#6>", line 1, in <module>
+    adr.replace("-", 2)
+TypeError: replace() argument 2 must be str, not int
+>>> adr.replace("-", " ", 2)
+'1838 3344 3480-5871'
+>>> 
+>>> adr.replace("-", " ", 1)
+'1838 3344-3480-5871'
+>>> adr.replace("-", " ", 3)
+'1838 3344 3480 5871'
+>>> 
+
+
+The split() method
+======================
+split([delimiter=" "])
+	Splits a sting into multiple parts as items in a list.
+	By default, the string is split based on space (" ") character.
+	However, using the optional parameter delimiter we can specify the delimiter character.
+
+
+
+quote = "Anand is personal who is always happy"
+quote.split()
+['Anand', 'is', 'personal', 'who', 'is', 'always', 'happy']
+quote_split = quote.split()
+quote_split
+['Anand', 'is', 'personal', 'who', 'is', 'always', 'happy']
+
+dt = "2/16/2026"
+dt.split()
+['2/16/2026']
+
+>>> 
+>>> dt = "2/16/2026"
+>>> dt.split("/")
+['2', '16', '2026']
+>>> 
+>>> month = int(dt.split("/")[0])
+>>> month
+2
+>>> day = int(dt.split("/")[1])
+>>> day
+16
+>>> year = int(dt.split("/")[2])
+>>> year
+2026
+>>> 
+
+
+The join() method
+==================
+str.join(sequence)
+	- It joins the items (characters) in the sequence using the specified str.
+
+
+>>> 
+>>> string_list = ['Anand', 'is', 'personal', 'who', 'is', 'always', 'happy']
+>>> string_list
+['Anand', 'is', 'personal', 'who', 'is', 'always', 'happy']
+>>> 
+>>> " ".join(string_list)
+'Anand is personal who is always happy'
+>>> 
+>>> "-".join("HYDERABAD")
+'H-Y-D-E-R-A-B-A-D'
+>>> 
+
+
+WORKING WITH DATES AND TIMES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The 'datetime' module contains three constructors to construct, date, time, and datetime.
+
+date constructor to construct a date object
+time constructor to construct a time object
+datetime constructor to construct a datetime object
+
+We import these constructs:
+from datetime import date
+from datetime import time
+from datetime import datetime
+
+	OR
+
+from datetime import date, time, datetime
+
+The today() method from date construct returns current date:
+
+>>> 
+>>> today_date = date.today()
+>>> today_date
+datetime.date(2026, 2, 16)
+>>> print(today_date)
+2026-02-16
+>>> 
+
+
+The now() method from datetime construct returns current date and time:
+
+
+>>> 
+>>> datetime.now()
+datetime.datetime(2026, 2, 16, 10, 19, 3, 714137)
+>>> datetime.now()
+datetime.datetime(2026, 2, 16, 10, 19, 21, 73068)
+>>> datetime.now()
+datetime.datetime(2026, 2, 16, 10, 19, 33, 309032)
+>>> datetime.now()
+datetime.datetime(2026, 2, 16, 10, 20, 2, 127518)
+>>> 
+>>> nw = datetime.now()
+>>> print(nw)
+2026-02-16 10:20:25.343174
+>>> 
+
+
+The date construct
+--------------------
+date(year, month, day)
+	- Returns the date specified using the values for year, month, and day.
+
+
+
+date(2026, 2, 7)
+datetime.date(2026, 2, 7)
+>>> bd_date = date(2026, 5, 20)
+>>> bd_date
+datetime.date(2026, 5, 20)
+>>> print(bd_date)
+2026-05-20
+>>> 
+>>> independence_day = date(2026, 8, 15)
+>>> independence_day
+datetime.date(2026, 8, 15)
+>>> 
+>>> meeting_day = date(2026, 2, 27)
+>>> print(meeting_day)
+2026-02-27
+>>> 
+
+
+The time construct
+---------------------
+time([hour][, minute][, second][, microsecond][tzinfo])
+	- This construct returns time object with the specified parameters.
+
+>>> 
+>>> time(17, 30, 0, 0)
+datetime.time(17, 30)
+>>> print(time(17,30,0,0))
+17:30:00
+>>> 
+>>> login_time = time(9, 30)
+>>> logout_time = time(18, 30)
+>>> print(f"LOGIN TIME: {login_time}\nLOGOUT TIME: {logout_time}")
+LOGIN TIME: 09:30:00
+LOGOUT TIME: 18:30:00
+>>> 
+
+
+The datetime construct
+----------------------
+datetime(year, month, day[, hour][, minute][, second][, microsecond])
+	- Returns a datetime object with the specified parameters.
+
+>>> 
+>>> datetime(2026, 3, 20, 10, 45)
+datetime.datetime(2026, 3, 20, 10, 45)
+>>> print(datetime(2026, 3, 20, 10, 45))
+2026-03-20 10:45:00
+
+
+
+Parsing dates times and datetimes
+=================================
+When the date/time/datetime values are in the form of strings we need to convert them to datetime values.
+
+The datetime construct has a method called strptime(), 'p' in the name of the method stands for 'parsing'.
+
+Syntax for strptime()
+---------------------
+strptime(datetime_str, format_str)
+
+Common format codes
+--------------------
+%d	- day number (1-31)
+%m	- month number (1-12)
+%y	- two-digit year number (26)
+%Y	- four-digit year number (2026)
+%H	- 24-hour format (0-23)
+%M	- minute number (0-59)
+%S	- second number (0-59)
+%I	- 12-hour format
+
+
+
+dt1 = "2/3/2026"
+dt2 = "7/6/2026"
+dt3 = "2026/15/8"
+dt4 = "2026/2/16"
+dt5 = "In year 2026, on 2nd month, day 16 I read the article."
+dt6 = "At 12:30 I was walking on 16/2/2025"
+
+dt1 = "2/3/2026"
+datetime.strptime(dt1, "%d/%m/%Y")
+datetime.datetime(2026, 3, 2, 0, 0)
+dt1 = datetime.strptime(dt1, "%d/%m/%Y")
+print(dt1)
+2026-03-02 00:00:00
+
+dt2 = "7/6/2026"
+dt2 = datetime.strptime(dt2, "%m/%d/%Y")
+print(dt2)
+2026-07-06 00:00:00
+
+dt3 = "2026/15/8"
+dt3 = datetime.strptime(dt3, "%Y/%d/%m")
+print(dt3)
+2026-08-15 00:00:00
+
+>>> dt4 = "2026/2/16"
+>>> dt4 = datetime.strptime(dt4, "%Y/%m/%d")
+>>> print(dt4)
+2026-02-16 00:00:00
+>>> 
+>>> dt5 = "In year 2026, on 2nd month, day 16 I read the article."
+>>> dt5 = datetime.strptime(dt5, "In year %Y, on %mnd month, day %d I read the article.")
+>>> print(dt5)
+2026-02-16 00:00:00
+>>> 
+>>> dt6 = "At 12:30 I was walking on 16/2/2025"
+>>> dt6 = datetime.strptime(dt6, "At %H:%M I was walking on %d/%m/%Y")
+>>> print(dt6)
+2025-02-16 12:30:00
+>>>
+
+
+Formatting date/time/datetime objects
+-------------------------------------
+From datetime construct there is a method named strftime, where 'f' stands for 'format'.
+
+Syntax:
+datetime_obj.strftime(format_str)
+
+Common format codes
+-------------------
+%a	Short week name (Sun, Mon, ...)
+%A	Full week name (Sunday, Monday, ...)
+%b	Short month name (Jan, Feb, Mar, ...)
+%B	Full month name (January, February, March, ...)
+%d	zero padded day number (01-31)
+%m	zero padded month number (01-12)
+%y	two-digit year number (26)
+%Y	four-digit year number (2026)
+%H	24-hour format (0-23)
+%I	12-hour format (1-12)
+%M	minute number (00-59)
+%S	second number (00-59)
+%p	AM/PM specifier
+%f	microsecond number
+
+
+
+special_day = datetime(2026, 10, 22, 19, 45, 10, 888888)
+>>> print(special_day)
+2026-10-22 19:45:10.888888
+>>> 
+>>> special_day.strftime("%B %d, %Y (%A)")
+'October 22, 2026 (Thursday)'
+>>> special_day.strftime("%B %d, %Y (%A) %H:%M %p")
+'October 22, 2026 (Thursday) 19:45 PM'
+>>> special_day.strftime("%B %d, %Y (%A) %I:%M %p")
+'October 22, 2026 (Thursday) 07:45 PM'
+>>> special_day.strftime("Time: %I:%M:%S %p Date: %a - %b %d, %Y")
+'Time: 07:45:10 PM Date: Thu - Oct 22, 2026'
+>>> special_day.strftime("%d-%m-%Y @ %I:%M %p")
+'22-10-2026 @ 07:45 PM'
+>>> special_day.strftime("%d%m%Y @ %I:%M %p")
+'22102026 @ 07:45 PM'
+>>> 
+
+
+
+
+
+
+
 
