@@ -2859,7 +2859,8 @@ print(dt3)
 
 Formatting date/time/datetime objects
 -------------------------------------
-From datetime construct there is a method named strftime, where 'f' stands for 'format'.
+From datetime construct there is a method named strftime, where 'f' stands for 'format'. This method turns a datetime value to a string by formatting it.
+
 
 Syntax:
 datetime_obj.strftime(format_str)
@@ -2902,7 +2903,457 @@ special_day = datetime(2026, 10, 22, 19, 45, 10, 888888)
 >>> 
 
 
+WORKING WITH TIME SPANS
+*************************
+- A timedelta object stores a time span.
+- Example: 3 hours; 3 hours & 45 mins; 3 hours, 45 mins, 30 seconds; 20 days; 20 days and 4 hours; 20 days, 4 hours and 4855 microseconds...
 
+- We create timedelta objects by finding difference between 2 date/time/datetime values.
+
+
+
+from datetime import date, time, datetime
+
+d1 = date(2026, 8, 17)
+d2 = date(2026, 11, 25)
+type(d1)
+<class 'datetime.date'>
+type(d2)
+<class 'datetime.date'>
+d_diff = d2 - d1
+type(d_diff)
+<class 'datetime.timedelta'>
+print(d_diff)
+100 days, 0:00:00
+
+t1 = time(8, 30, 45)
+t2 = time(17, 0, 55)
+t_diff = t2 - t1
+Traceback (most recent call last):
+  File "<pyshell#13>", line 1, in <module>
+    t_diff = t2 - t1
+TypeError: unsupported operand type(s) for -: 'datetime.time' and 'datetime.time'
+
+>>> dt1 = datetime(2026, 2, 17, 9, 45)
+>>> dt2 = datetime(2026, 9, 25, 12, 38)
+>>> dt_diff = dt2 - dt1
+>>> type(dt_diff)
+<class 'datetime.timedelta'>
+>>> print(dt_diff)
+220 days, 2:53:00
+>>> 
+>>> d_df_diff = dt2 - d1
+Traceback (most recent call last):
+  File "<pyshell#21>", line 1, in <module>
+    d_df_diff = dt2 - d1
+TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'datetime.date'
+>>> 
+
+
+- Create timedelta objects using 'timedelta' construct from datetime module:
+
+from datetime import date, time, datetime, timedelta
+
+Syntax for timedelta:
+------------------------
+timedetla([days][, seconds][, microseconds][milliseconds][minutes][hours][weeks])
+
+- The timedelta object is measured in days, seconds, and microseconds.
+
+
+
+from datetime import date, time, datetime, timedelta
+
+project_duration = timedelta(weeks=6, days=4)
+type(project_duration)
+<class 'datetime.timedelta'>
+print(project_duration)
+46 days, 0:00:00
+>>> project_duration
+datetime.timedelta(days=46)
+>>> 
+>>> task_duration = timedelta(hours=3, minutes=30)
+>>> task_duration
+datetime.timedelta(seconds=12600)
+>>> print(task_duration)
+3:30:00
+>>> 
+>>> travel_duration = timedelta(weeks=2, days=5, hours=13, minutes=45)
+>>> travel_duration
+datetime.timedelta(days=19, seconds=49500)
+>>> print(travel_duration)
+19 days, 13:45:00
+>>>
+
+
+Attributes and a method of a timedelta object
+=============================================
+1. days
+	-> returns number of days in the timedelta object
+
+
+>>> 
+>>> sample_td = timedelta(weeks=8, days=17, hours=2, seconds=18, microseconds=25)
+>>> 
+>>> sample_td.days
+73
+
+
+2. seconds
+	-> returns number of seconds after days
+
+>>> 
+>>> sample_td.seconds
+7218
+>>> 
+
+
+3. microseconds
+	-> returns number of microseconds after days and seconds
+
+>>> 
+>>> sample_td.microseconds
+25
+>>> 
+
+
+4. total_seconds()
+	-> returns total seconds in a timedelta object
+
+
+>>> 
+>>> sample_td.total_seconds()
+6314418.000025
+>>> 
+
+
+
+Some of the attributes of date/time objects
+----------------------------------------------
+1. year
+	-> returns the year number of the
+2. month
+	-> returns the month number
+3. day
+	-> returns the day number
+4. hour
+	-> returns hour number
+5. minute
+	-> returns the minute number
+6. second
+	-> returns the seconds number
+7. microsecond
+	-> returns the microsecond numbers
+
+
+>>> dt_now = datetime.now()
+>>> print(dt_now)
+2026-02-17 10:11:22.066724
+>>> dt_now.year
+2026
+>>> dt_now.month
+2
+>>> dt_now.day
+17
+>>> dt_now.hour
+10
+>>> dt_now.minute
+11
+>>> dt_now.second
+22
+>>> dt_now.microsecond
+66724
+>>> 
+
+
+
+
+WORKING WITH DICTIONARY
+~~~~~~~~~~~~~~~~~~~~~~~
+- A dictionary, unlike a list, is a collection of unordered items.
+- The items in a dictionary are surrounded by braces - {}
+- And each item has two components: key & value
+- Each component is separated by colon: key:value
+- The key:value makes one item, and each item is separated by comma (,).
+- Dictionary is mutable and efficient compared to list or tuple.
+
+Syntax
+--------
+{key1:value1, key2:value2, key3:value3, key4:value4, ...}
+
+- We can refer an item using its key value as dictionaries don't have index numbers.
+- And keys must be unique in a dictionary. And keys are immutable object types.
+
+
+Creating a dictionary
+----------------------
+>>> 
+>>> countries = {
+...     "IN":"India",
+...     "AU":"Australia",
+...     "JP":"Japan",
+...     "US":"United States",
+...     "CA":"Canada"
+...     }
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Canada'}
+>>> 
+
+
+Create an empty dictionary
+--------------------------
+>>> 
+>>> catalogue = {}
+>>> type(catalogue)
+<class 'dict'>
+>>> 
+
+
+
+Accessing items of a dictionary
+-------------------------------
+- To access items in a dictionary use key as index to get its value.
+
+dictionary_name[key]
+
+
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Canada'}
+>>> countries["IN"]
+'India'
+>>> countries["CA"]
+'Canada'
+>>> countries["JP"]
+'Japan'
+>>> countries["NZ"]
+Traceback (most recent call last):
+  File "<pyshell#95>", line 1, in <module>
+    countries["NZ"]
+KeyError: 'NZ'
+>>> 
+
+
+Adding new items to a dictionary
+----------------------------------
+dictionary_name[newKey] = newValue
+
+>>> 
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Canada'}
+>>> countries["UK"] = "United Kingdom"
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Canada', 'UK': 'United Kingdom'}
+>>> countries["FR"] = "France"
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Canada', 'UK': 'United Kingdom', 'FR': 'France'}
+>>> 
+
+
+Update existing value of a key in the dictionary
+-------------------------------------------------
+dictionary_name[key] = newValue
+
+>>> 
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Canada', 'UK': 'United Kingdom', 'FR': 'France'}
+>>> countries["CA"] = "Cambodia"
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'UK': 'United Kingdom', 'FR': 'France'}
+>>> countries["UK"] = "Ukraine"
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'UK': 'Ukraine', 'FR': 'France'}
+>>> 
+
+
+Checking for a key in a dictionary
+------------------------------------
+key in dictionary
+	-> if key is in the dictionary then it returns True; otherwise False
+
+
+
+countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'UK': 'Ukraine', 'FR': 'France'}
+countries["IN"]
+'India'
+countries["SP"]
+Traceback (most recent call last):
+  File "<pyshell#120>", line 1, in <module>
+    countries["SP"]
+KeyError: 'SP'
+
+"IN" in countries
+True
+"SP" in countries
+False
+
+if "SP" in countires:
+    print("Singapore is in the dictionary")
+else:
+    countries["SP"] = "Singapore"
+    print("Singapore is added to the dictionary")
+
+...     
+Traceback (most recent call last):
+  File "<pyshell#130>", line 1, in <module>
+    if "SP" in countires:
+NameError: name 'countires' is not defined. Did you mean: 'countries'?
+>>> 
+>>> if "SP" in countries:
+...     print("Singapore is in the dictionary")
+... else:
+...     countries["SP"] = "Singapore"
+...     print("Singapore is added to the dictionary")
+... 
+...     
+Singapore is added to the dictionary
+>>>
+
+
+
+Using the get() method
+-----------------------
+- When a key isn't in the dictionary, then it throws an error (KeyError) which ends the program from executing.
+- Use the get() method to avoid KeyError.
+
+Syntax:
+dictionary.get(key[, default_value])
+
+If the specified key is the dictionary then it returns the corresponding item. If it is not in the dictionary it returns 'None', or returns default_value it specified.
+
+
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'UK': 'Ukraine', 'FR': 'France', 'SP': 'Singapore'}
+>>> countries.get("IN")
+'India'
+>>> countries.get("IS")
+>>> countries.get("IS", "Unknown")
+'Unknown'
+>>> 
+>>> countries.get("FR")
+'France'
+>>> countries.get("FR", "Unknown")
+'France'
+>>> countries.get("GP", "Uknown")
+'Uknown'
+>>> 
+
+
+Deleting dictionary items
+==========================
+Three ways to delete items from a dictionary:
+1. del	- statement
+2. pop() - method
+3. clear() - method
+
+
+del - statement to delete an item from a dictionary
+---------------------------------------------------
+del dictionary_name[key]
+	-> deletes the item with the specified key
+
+
+>>> 
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'UK': 'Ukraine', 'FR': 'France', 'SP': 'Singapore'}
+>>> del countries["UK"]
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'FR': 'France', 'SP': 'Singapore'}
+>>> del countries["UK"]
+Traceback (most recent call last):
+  File "<pyshell#157>", line 1, in <module>
+    del countries["UK"]
+KeyError: 'UK'
+>>> 
+
+pop - to delete an item from a dictionary
+-------------------------------------------
+pop(key[, default_value])
+	-> it returns the value for the specified key. If the doesn't exist it returns None, or the default_value when the second parameter is specified.
+
+
+
+countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'CA': 'Cambodia', 'FR': 'France', 'SP': 'Singapore'}
+>>> countries.pop("CA")
+'Cambodia'
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'FR': 'France', 'SP': 'Singapore'}
+>>> countries.pop("CA")
+Traceback (most recent call last):
+  File "<pyshell#172>", line 1, in <module>
+    countries.pop("CA")
+KeyError: 'CA'
+>>> countries.pop("CA", "Unknown")
+'Unknown'
+>>> 
+
+
+clear - to delete all items from a dictionary
+--------------------------------------------
+dictionary_name.clear()
+
+
+>>> 
+>>> countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'FR': 'France', 'SP': 'Singapore'}
+>>> countries.clear()
+>>> countries
+{}
+>>> 
+
+
+Looping through keys of a dictionary
+----------------------------------------
+for var in dictionary:
+	block
+
+This loops through the keys of the dictionary.
+
+
+>>> 
+>>> countries = {'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'FR': 'France', 'SP': 'Singapore'}
+>>> 
+>>> for country in countries:
+...     print(country, end=" ")
+... 
+...     
+IN AU JP US FR SP 
+>>> 
+
+
+keys() method - access the keys
+-------------------------------
+We can get the keys of dictionary using keys() method.
+Additionally we can loop through the keys just like above.
+
+
+
+countries
+{'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'FR': 'France', 'SP': 'Singapore'}
+countries.keys()
+dict_keys(['IN', 'AU', 'JP', 'US', 'FR', 'SP'])
+>>> country_codes = list(countries.keys())
+>>> country_coes
+Traceback (most recent call last):
+  File "<pyshell#207>", line 1, in <module>
+    country_coes
+NameError: name 'country_coes' is not defined. Did you mean: 'country_codes'?
+>>> country_codes
+['IN', 'AU', 'JP', 'US', 'FR', 'SP']
+>>> 
+>>> for country in countries.keys():
+...     print(country, end=" ")
+... 
+...     
+IN AU JP US FR SP 
+>>>
+
+
+values() method to get all the values
+---------------------------------------
+We can get the values of dictionary using values() method.
+Additionally we can loop through the values just like above.
 
 
 
