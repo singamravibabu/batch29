@@ -3357,5 +3357,390 @@ Additionally we can loop through the values just like above.
 
 
 
+>>> countries = {'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'FR': 'France', 'SP': 'Singapore'}
+
+>>> countries.values()
+dict_values(['India', 'Australia', 'Japan', 'United States', 'France', 'Singapore'])
+>>> country_names = countries.values()
+>>> country_names
+dict_values(['India', 'Australia', 'Japan', 'United States', 'France', 'Singapore'])
+>>> 
+>>> country_names = list(country_names)
+>>> country_names
+['India', 'Australia', 'Japan', 'United States', 'France', 'Singapore']
+>>> 
+>>> for country in countries.values():
+...     print(country, end=" ")
+... 
+...     
+India Australia Japan United States France Singapore 
+
+
+items() method to get items from a dictionary
+------------------------------------------------
+This method returns items from a dictionary as a tuple where key and value are pairs in the tuple.
+Additionally we can loop through the items.
+
+
+countries = {'IN': 'India', 'AU': 'Australia', 'JP': 'Japan', 'US': 'United States', 'FR': 'France', 'SP': 'Singapore'}
+
+country_tuples = countries.items()
+>>> country_tuples
+dict_items([('IN', 'India'), ('AU', 'Australia'), ('JP', 'Japan'), ('US', 'United States'), ('FR', 'France'), ('SP', 'Singapore')])
+>>> 
+>>> for item in countries.items():
+...     print(item)
+... 
+...     
+('IN', 'India')
+('AU', 'Australia')
+('JP', 'Japan')
+('US', 'United States')
+('FR', 'France')
+('SP', 'Singapore')
+>>> 
+
+
+
+The dict() method to convert other objects to a dictionary
+----------------------------------------------------------
+>>> 
+>>> states = [
+...     ["TS", "Telangana"],
+...     ["AP", "Andhra Pradesh"],
+...     ["TN", "Tamilnadu"],
+...     ["KA", "Karnataka"],
+...     ["KL", "Kerala"],
+...     ["MH", "Maharastra"]
+...     ]
+>>> states_dict = dict(states)
+>>> states_dict
+{'TS': 'Telangana', 'AP': 'Andhra Pradesh', 'TN': 'Tamilnadu', 'KA': 'Karnataka', 'KL': 'Kerala', 'MH': 'Maharastra'}
+>>> 
+
+
+Dictionary of dictionaries
+--------------------------
+In the dictionary of dictionaries, each key is associated with another dictionary.
+
+employees = {
+	"1001": {'name':'raju', 'dept':'hr', 'salary':25000.0, 'age':22, 'city':'amr'},
+	"1002": {'name':'prasad', 'dept':'sales', 'salary':40000.0, 'age':25, 'city':'che'},
+	"1003": {'name':'vinay', 'dept':'it', 'salary':26000.0, 'age':21, 'city':'hyd'},
+	"1004": {'name':'anand', 'dept':'hr', 'salary':35000.0, 'age':30, 'city':'tri'}
+}
+
+
+>>> 
+>>> employees["1001"]
+{'name': 'raju', 'dept': 'hr', 'salary': 25000.0, 'age': 22, 'city': 'amr'}
+>>> employees["1001"]["name"]
+'raju'
+>>> employees["1001"]["dept"]
+'hr'
+>>> employees["1001"]["salary"]
+25000.0
+>>> employees["1001"]["age"]
+22
+>>> employees["1001"]["city"]
+'amr'
+>>> 
+
+
+
+WORKING WITH SETS
+~~~~~~~~~~~~~~~~~
+- A set is a collection of unordered items without duplicates.
+- Syntax:
+	{item1, item2, item3, item4, item5, ...}
+
+
+Creating a set
+--------------
+>>> 
+>>> numbers = {1, 2, 3, 4, 5}
+>>> type(numbers)
+<class 'set'>
+>>> 
+>>> 
+
+
+Creating an empty set
+---------------------
+>>> 
+>>> numbers = set()
+>>> numbers
+set()
+>>> type(numbers)
+<class 'set'>
+>>> 
+
+
+Converting a list to set
+------------------------
+>>> 
+>>> # removes the duplicates from the list
+>>> items = set([1, 2, 3, 3, 3, 4, 4, 1, 1])
+>>> items
+{1, 2, 3, 4}
+>>> 
+
+
+Adding an item to a set
+-----------------------
+Use add(item) to add the specified item to a set
+
+
+>>> 
+>>> courses = {'python', 'pandas'}
+>>> courses.add('java')
+>>> courses
+{'java', 'pandas', 'python'}
+>>> 
+
+
+Adding multiple items to a set
+------------------------------
+Use update(items_collection]) to add the specified items_collection to the set
+
+>>> 
+>>> courses.update(['numpy', 'matplotlib', 'seaborn'])
+>>> courses
+{'matplotlib', 'seaborn', 'python', 'java', 'numpy', 'pandas'}
+>>> 
+
+
+Remove an item from a set
+---------------------------
+remove(item) - removes the specified item from the set
+		-> If the item is not found then it throws an Error.
+
+
+>>> 
+>>> courses
+{'matplotlib', 'seaborn', 'python', 'java', 'numpy', 'pandas'}
+>>> courses.remove('java')
+>>> courses
+{'matplotlib', 'seaborn', 'python', 'numpy', 'pandas'}
+>>> courses.remove('perl')
+Traceback (most recent call last):
+  File "<pyshell#93>", line 1, in <module>
+    courses.remove('perl')
+KeyError: 'perl'
+>>> 
+
+
+discard(item)	- removes the specified item from the set, if the item is not found then it doesn't throw any error.
+
+>>> 
+>>> courses
+{'matplotlib', 'seaborn', 'python', 'numpy', 'pandas'}
+>>> courses.discard('numpy')
+>>> courses
+{'matplotlib', 'seaborn', 'python', 'pandas'}
+>>> courses.discard('perl')
+>>> 
+
+
+Check membership
+----------------
+- Use 'in' keyword to check for the membership
+
+>>> 
+>>> courses
+{'matplotlib', 'seaborn', 'python', 'pandas'}
+>>> 'pandas' in courses
+True
+>>> 'streamlit' in courses
+False
+>>> 
+
+
+Set Union (Combines sets)
+-------------------------
+>>> 
+>>> A = {1, 2, 3, 4}
+>>> B = {3, 4, 5, 6}
+>>> A | B
+{1, 2, 3, 4, 5, 6}
+>>> A.union(B)
+{1, 2, 3, 4, 5, 6}
+>>> 
+
+
+Set Intersection (Common Items)
+-------------------------------
+>>> 
+>>> A = {1, 2, 3, 4}
+>>> B = {3, 4, 5, 6}
+>>> A & B
+{3, 4}
+>>> A.intersection(B)
+{3, 4}
+>>> 
+
+
+Set Difference (Items in one set but not in other)
+---------------------------------------------------
+>>> 
+>>> A = {1, 2, 3, 4}
+>>> B = {3, 4, 5, 6}
+>>> A - B
+{1, 2}
+>>> B - A
+{5, 6}
+>>> 
+
+
+Symmetric Difference (Items NOT common)
+---------------------------------------
+Use the method symmetric_difference() or ^ operator
+
+>>> 
+>>> A = {1, 2, 3, 4}
+>>> B = {3, 4, 5, 6}
+>>> A.symmetric_difference(B)
+{1, 2, 5, 6}
+>>> 
+
+
+Loop through a set
+-------------------
+for var in set:
+	block
+
+>>> 
+>>> courses = {'matplotlib', 'seaborn', 'python', 'numpy', 'pandas'}
+>>> for course in courses:
+...     print(course, end=" ")
+
+
+Copy a set
+------------
+Use the copy() method to create a copy of a set
+
+>>> 
+>>> A = {5, 10, 15, 20, 25}
+>>> B = A.copy()
+>>> B
+{20, 5, 25, 10, 15}
+>>> 
+
+
+Clear a set (Empty items from a set)
+------------------------------------
+- Use clear() method to empty a set
+
+>>> 
+>>> A = {5, 10, 15, 20, 25}
+>>> A.clear()
+>>> A
+set()
+>>> 
+
+
+Frozen Set (immutable set)
+--------------------------
+Use the frozenset() function to create a immutable set
+
+>>> 
+>>> weekdays = frozenset(["sun", "mon", "tue", "wed", "thu", "fri", "sat"])
+>>> weekdays
+frozenset({'sat', 'mon', 'tue', 'thu', 'wed', 'sun', 'fri'})
+>>> type(weekdays)
+<class 'frozenset'>
+>>> weekdays.add("today")
+Traceback (most recent call last):
+  File "<pyshell#166>", line 1, in <module>
+    weekdays.add("today")
+AttributeError: 'frozenset' object has no attribute 'add'
+>>> 
+
+
+Problem
+---------
+There is a list with duplicate items:
+	['hyd', 'amr', 'del', 'che', 'che', 'hyd', 'amr', 'amr', 'che', 'hyd', 'blr', 'blr', 'tri', 'mum', 'tri', 'che', 'hyd', 'blr']
+
+Count the number of occurrences of each city in the list above, and create a dictionary like the following:
+
+Create dictionary:
+	{'hyd':4, 'amr':3, 'del':1, 'che':4, 'blr':3, 'tri':2, 'mum':1}
+
+
+
+cities = ['hyd', 'amr', 'del', 'che', 'che', 'hyd', 'amr', 'amr', 'che', 'hyd', 'blr', 'blr', 'tri', 'mum', 'tri', 'che', 'hyd', 'blr']
+>>> 
+>>> cities_set = set(cities)
+>>> cities_set
+{'che', 'mum', 'amr', 'tri', 'hyd', 'blr', 'del'}
+>>> 
+>>> cities_count = {}
+>>> 
+>>> for city in cities_set:
+...     cities_count[city] = cities.count(city)
+... 
+...     
+>>> cities_count
+{'che': 4, 'mum': 1, 'amr': 3, 'tri': 2, 'hyd': 4, 'blr': 3, 'del': 1}
+>>> 
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Projects
+============
+- No solo projects
+- Team-based projects:
+	Collaboration
+- Version-controlled
+
+Version control:
+	- git application
+	git-scm.com
+
+Collaboration:
+	GitHub.com
+	My account: GitHub.com/singamravibabu
+
+
+Library Management System: Project
+
+
+Working directory: LibraryMS
+
+LibraryMS/
+	.env/		# python virtual environment
+	.git/		# git initiated; hidden
+	.gitignore	# ignores files not to be pushed
+	README.md	# document for the overview of the project
+	requirements.txt	# contains libraries to be installed
+	main.py		# entry into the application
+	database/	# files related to database
+		db.py	
+	templates/	# HTML files
+	static/		# CSS files
+	test/		# testing files
+		test_main.py	
+	docs/		# documentation and help file
+
+Initiating the project...
+Create LibraryMS:
+	-> Virtual Environment
+		python -m venv .env
+	-> Activate the virtual environment
+		.env\Scripts\activate
+		(Always activate virtual environment)
+		To deactivate: deactivate
+	-> create requirements.txt
+		We store all the libraries to be installed
+	-> Initialize the git repository
+		git init -b main
+		(Same repository is created on the GitHub.com)
+	-> Connecting to remote repository:
+		git remote add origin https://www.github.com/singamravibabu/LibraryMS.git
+	-> Verity the remote repository connection:
+		git remote -v
 
 
