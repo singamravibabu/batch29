@@ -3743,4 +3743,726 @@ Create LibraryMS:
 	-> Verity the remote repository connection:
 		git remote -v
 
+main	-> application -> production
+	development	-> next version
+		- homepage
+		- registration
+		- databases
+		- app1
+		- app2
+		- docs
+		- bugs
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+OBJECT-ORIENTED CODING
+~~~~~~~~~~~~~~~~~~~~~~
+Objects:
+	book, laptop, chair, phone, bike, car, ...
+	saving account, insurance product, parent's affection, ...
+
+Aspects of an object:
+	1. attributes - characteristics/features: variables
+	2. methods - functionalities/actions: functions
+
+phone: object
+	attributes: variables
+		make = "Samsung" 
+		model = "A22"
+		weight = 200
+		dimensions = (7, 3)
+		camera = True
+		Bluetooth = True
+		....
+	methods
+		call(to, duration, type)
+		take_call(from, duration, type)
+		message(to, text, length)
+		receive_message(from, text, length)
+		send_file(file, type)
+		receive_file(file,type)
+		connect(pair)
+		disconnect(unpair)
+
+
+The class is a blueprint or template to create an object in a OOP.
+
+We code 'class' with attributes and methods. Then we create 'objects' based on the class. An object is an instance of a class.
+
+Creating a class syntax:
+
+class ClassName:
+	block	# attributes and methods
+
+
+Creating an object based on a class:
+
+var = ClassName()
+
+
+Once an object is created that object gets the attributes and methods from the class.
+
+Attributes
+-----------
+# getting
+
+object.attribute1	# reading attribute value
+object.attribute2	# reading attribute value
+object.attribute3	# reading attribute value
+
+# setting
+
+object.attribute1 = value	# writing attribute value
+object.attribute2 = value	# writing attribute value
+object.attribute3 = value	# writing attribute value
+
+
+
+class Student:
+    name = "pupil"
+    grade = 1
+    age = 5
+
+    
+>>>
+s1 = Student()
+s1.name
+'pupil'
+s1.grade
+1
+s1.age
+5
+
+s1.name = "anand"
+s1.grade = 7
+s1.grade = 12
+
+s1.name
+'anand'
+s1.grade
+12
+s1.age = 12
+s1.grade = 7
+
+s1.name
+'anand'
+s1.grade
+7
+s1.age
+12
+
+s2 = Student()
+s2.name
+'pupil'
+>>> s2.grade
+1
+>>> s2.age
+5
+>>> 
+>>> s2.name = "rajesh"
+>>> s2.grade = 10
+>>> s2.age = 15
+>>> 
+>>> s2.name
+'rajesh'
+>>> s2.grade
+10
+>>> s2.age
+15
+>>> 
+
+
+The constructor (method)
+--------------------------
+__init__()
+	- This is a special method (function) used to initiate the attribute values of an object while creating the object.
+
+
+Syntax:
+
+def __init__(self, param1, param2, param3, ... )
+	block
+
+Every method (function) has 'self' as its first parameter. The 'self' represents the object with which you are working.
+
+
+>>>
+>>> class Student:
+    def __init__(self, name, grade, age):
+...         self.name = name
+...         self.grade = grade
+...         self.age = age
+... 
+...         
+>>> s1 = Student("prasad", 8, 13)
+>>> 
+>>> s1.name
+'prasad'
+>>> s1.grade
+8
+>>> s1.age
+13
+>>> 
+
+
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+
+        
+p001 = Product('Samsung', 22500.0, 2)
+
+p001.name
+'Samsung'
+p001.price
+22500.0
+p001.discountPercent
+2
+
+
+
+
+
+
+Methods
+----------
+- Methods are functions coded inside a class. However, methods have some special features.
+- Every method has 'self' as it first argument.
+- Syntax for using methods:
+	object.method_name([args])
+
+
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+    def discountPrice(self):
+        return self.price - self.discountAmount()
+
+    
+printer = Product("HP Laserjet", 18000.0, 4)
+printer.name
+'HP Laserjet'
+>>> printer.price
+18000.0
+>>> printer.discountPercent
+4
+>>> 
+>>> printer.discountAmount()
+720.0
+>>> printer.discountPrice()
+17280.0
+>>> 
+>>> printer
+<__main__.Product object at 0x000002769ECB26E0>
+>>> print(printer)
+<__main__.Product object at 0x000002769ECB26E0>
+>>> 
+>>> 
+
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+...     def discountPrice(self):
+...         return self.price - self.discountAmount()
+...     def display(self):
+...         return f"Name: {self.name}\nPrice: {self.price}\nDiscount percent: {self.discountPercent}\nDiscount amount: {self.discountAmount()}\nDiscount price: {self.discountPrice()}"
+... 
+...     
+>>> p1 = Product("Epson Projector", 48000.0, 5)
+>>> p1.display()
+'Name: Epson Projector\nPrice: 48000.0\nDiscount percent: 5\nDiscount amount: 2400.0\nDiscount price: 45600.0'
+>>> print(p1)
+<__main__.Product object at 0x000002769ECB2CB0>
+>>> 
+
+
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+...     def discountPrice(self):
+...         return self.price - self.discountAmount()
+...     def __str__(self):
+...         return f"Name: {self.name}\nPrice: {self.price}\nDiscount percent {self.discountPercent}\nDiscount amount: {self.discountAmount()}\nDiscount price: {self.discountPrice()}"
+... 
+...     
+>>> p1 = Product("Epson Projector", 30000.0, 1)
+>>> print(p1)
+Name: Epson Projector
+Price: 30000.0
+Discount percent 1
+Discount amount: 300.0
+Discount price: 29700.0
+>>> 
+
+
+
+OBJECT-COMPOSITION
+~~~~~~~~~~~~~~~~~~
+- In the real-world object interact with each other. And we can create composite objects, and their interactions.
+
+
+Die class
+---------
+import random
+
+class Die:
+	def __init__(self):
+		self.value = 1
+
+	def roll(self):
+		self.value = random.randint(1, 6)
+
+
+
+d1 = Die()
+d1.value
+1
+>>> d1.roll()
+>>> d1.value
+6
+>>> d1.roll()
+>>> d1.value
+1
+>>> d1.roll()
+>>> d1.value
+3
+>>> d1.roll()
+>>> d1.value
+1
+>>> 
+
+
+
+class Dice:
+	def __init__(self):
+		self.list = []
+
+	def addDie(self, die):
+		self.list.append(die)
+
+	def rollAll(self):
+		for die in self.list:
+			die.roll()
+
+
+
+
+
+d1 = Die()
+d2 = Die()
+d3 = Die()
+d1.value
+1
+d2.value
+1
+d3.value
+1
+
+dice = Dice()
+
+dice.addDie(d1)
+dice.addDie(d2)
+dice.addDie(d3)
+
+>>> dice
+<__main__.Dice object at 0x000001BCBAB92AA0>
+>>> dice.list
+[<__main__.Die object at 0x000001BCBAB926E0>, <__main__.Die object at 0x000001BCBAB92B30>, <__main__.Die object at 0x000001BCBAB92BF0>]
+>>> 
+>>> dice.rollAll()
+>>> d1.value
+5
+>>> d2.value
+2
+>>> d3.value
+2
+>>> 
+
+
+ENCAPSULATION
+~~~~~~~~~~~~~~
+- Another OOP concept
+- To hide the attributes and methods from outside access
+- To hide an attribute from the outside add two underscores before the name of the attribute. The attribute becomes private.
+
+Public attribute:
+	value
+Private attribute:
+	__value
+
+
+The private attribute values are changed /modified using a public method.
+
+
+
+class Die:
+... 	def __init__(self):
+... 		self.__value = 1
+... 
+... 	def roll(self):
+... 		self.__value = random.randint(1, 6)
+... 
+... 		
+>>> die = Die()
+>>> die.__value
+Traceback (most recent call last):
+  File "<pyshell#116>", line 1, in <module>
+    die.__value
+AttributeError: 'Die' object has no attribute '__value'
+>>> 
+
+
+>>> 
+>>> class Die:
+...     def __init__(self):
+...         self.__value = 1
+...     def roll(self):
+...         self.__value = random.randint(1, 6)
+...     def value(self, value):
+...         if value < 1 or value > 6:
+...             raise ValueError("Value must be between 1 and 6")
+...         else:
+...             self.__value = value
+... 
+...             
+
+
+Whenever, we use private attributes we may need to use two methods. One is setter method. Other is getter method.
+
+Setter method sets the value of a private attribute
+Getter methods gets the value of a private attribute
+
+
+import random
+class Die:
+	def __init__(self):
+		self.__value = 1
+
+	# setter method
+	def setValue(self, value):
+		if value < 1 or value > 6:
+			raise ValueError("Value must be between 1 and 6")
+		else:
+			self.__value = value
+
+	# getter method
+	def getValue(self):
+		return self.__value
+
+	def roll(self):
+		self.__value = random.randint(1, 6)
+
+
+
+
+We use annotations to set and get values very easily using something like an attribute, which is actually a method.
+
+object.value		# getter method
+object.value = 3	# setter method
+
+
+@property annotation is used to create getter method
+@propertyName.setter annotation is used to create setter method
+
+
+
+import random
+class Die:
+	def __init__(self):
+		self.__value = 1
+
+	# getter method
+	@property
+	def value(self):
+		return self.__value
+
+	# setter method
+	@value.setter
+	def value(self, value):
+		if value < 1 or value > 6:
+			raise ValueError("Value must be between 1 and 6.")
+		else:
+			self.__value = value
+
+
+
+INHERITANCE
+~~~~~~~~~~~~~
+A new class created based on an existing class is called a child/derived/subclass which inherits attributes and methods of the existing class. The existing class is called parent/base/superclass.
+This concept is called inheritance. Where a child class inherits the attributes and methods of the parent class.
+
+Additionally, child class can add more attributes and methods specific to it.
+
+
+class Parent:
+	...
+
+
+Syntax for creating a class:
+----------------------------
+class Child(Parent):
+	...
+
+
+
+Product: (parent)
+	name
+	price
+	discountPercent
+	discountAmount()
+	discountPrice()
+
+Book: (child)
+	author
+	publisher
+	edition
+
+Movie: (child)
+	release_year
+	cast
+
+
+Parent-Child classes
+--------------------
+class Product:
+	def __init__(self, name, price, discountPercent):
+		self.name = name
+		self.price = price
+		self.discountPercent = discountPercent
+
+	def discountAmount(self):
+		return self.price * self.discountPercent / 100
+
+	def discountPrice(self):
+		return self.price - self.discountAmount()
+
+class Book(Product):
+	def __init__(self, name, price, discountPercent, author):
+		Product.__init__(self, name, price, discountPercent)
+		self.author = author
+
+class Movie(Product):
+	def __init__(self, name, price, discountPercent, year):
+		Product.__init__(self, name, price, discountPercent)
+		self.year = year
+
+
+
+>>>
+>>> book1 = Book("Attitude", 250.0, 10, "John Maxwell")
+>>> book1.name
+'Attitude'
+>>> book1.price
+250.0
+>>> book1.discountPercent
+10
+>>> book1.author
+'John Maxwell'
+>>> book1.discountAmount()
+25.0
+>>> book1.discountPrice()
+225.0
+
+
+Overriding methods of parent class
+-----------------------------------
+We can override the parent class attributes in the child class.
+All we need to do is code the same method in the child class that will override the method for the child class.
+
+
+
+class Product:
+	def __init__(self, name, price, discountPercent):
+		self.name = name
+		self.price = price
+		self.discountPercent = discountPercent
+
+	def discountAmount(self):
+		return self.price * self.discountPercent / 100
+
+	def discountPrice(self):
+		return self.price - self.discountAmount()
+
+	def __str__(self):
+		return self.name
+
+class Book(Product):
+	def __init__(self, name, price, discountPercent, author):
+		Product.__init__(self, name, price, discountPercent)
+		self.author = author
+
+	def __str__(self):
+		return f"{self.name} | {self.author}"
+
+class Movie(Product):
+	def __init__(self, name, price, discountPercent, year):
+		Product.__init__(self, name, price, discountPercent)
+		self.year = year
+
+	def __str__(self):
+		return f"{self.name} | {self.year}"
+
+
+>>> 
+>>> product1 = Product("Laptop", 38000.0, 2)
+>>> book1 = Book("Learning Python", 1200.0, 20, "Mark Lutz")
+>>> movie1 = Movie("Bahubali", 200.0, 0, 2015)
+>>> 
+>>> print(product1)
+Laptop
+>>> print(book1)
+Learning Python | Mark Lutz
+>>> print(movie1)
+Bahubali | 2015
+>>>
+
+
+
+TYPES OF INHERITANCE
+---------------------
+1. Single inheritance:
+
+class A:
+	pass
+
+class B(A):
+	pass
+
+
+2. Multiple inheritance:
+
+class Father:
+	pass
+
+class Mother:
+	pass
+
+class Child(Father, Mother):
+	pass
+
+
+3. Multi-level inheritance
+
+class A:
+	pass
+
+class B(A):
+	pass
+
+class C(B):
+	pass
+
+
+4. Hierarchical inheritance
+
+class Animal:
+	pass
+
+class Dog(Animal):
+	pass
+
+class Cat(Animal):
+	pass
+
+
+
+class: Employee
+	name
+	salary
+	show_details()
+
+child class: Manager
+	bonus()
+
+class Employee:
+	def __init__(self, name, salary):
+		self.name = name
+		self.salary = salary
+
+	def show_details(self):
+		return f"Name: {self.name}\nSalary: {self.salary}"
+
+class Manager(Employee):
+	def __init__(self, name, salary):
+		super().__init__(self, name, salary)
+
+	def bonus(self):
+		print("Bonus is", self.salary * 0.2)
+
+
+BankAccount
+	- name
+	- balance
+	- deposit()
+	- show_balance()
+
+SavingAccount
+	- add_interest()
+
+CurrentAccount
+	- withdraw
+
+
+
+class BankAccount:
+	def __init__(self, name, balance):
+		self.name = name
+		self.balance = balance
+
+	def show_balance(self):
+		print("Name:", self.name)
+		print("Balance:", self.balance)
+
+	def deposit(self, amount):
+		self.balance += amount
+		print("Deposited amount:", amount)
+
+class SavingAccount(BankAccount):
+	def __init__(self, name, balance):
+		super().__init__(self, name, balance)
+
+	def add_interest(self):
+		interest = self.balance * 0.05
+		self.balance += self.balance * interest
+		print("Current balance:", self.balance)
+
+class CurrentAccount(BanckAccount):
+	def __init__(self, name, balance):
+		super().__init__(self, name, balance)
+
+	def withdraw(self, amount):
+		if self.balance > amount:
+			self.balance -= amount
+			print("New balance:", self.balance)
+		else:
+			self.balace - amount
+			print("Overdraft")
+
+
+
 
